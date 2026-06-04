@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibtida Bin Ahmed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f0e;
+    --surface: #141614;
+    --border: #222422;
+    --border-hi: #2e302e;
+    --text: #e8eae6;
+    --muted: #6b6f69;
+    --accent: #a8f07a;
+    --accent-dim: #2a3d1e;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Layout ────────────────────────────────────── */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── Nav ───────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    background: rgba(13, 15, 14, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+
+  .nav-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.15s;
+    font-family: var(--mono);
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── Hero ──────────────────────────────────────── */
+  #hero {
+    padding: 140px 0 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeup 0.6s 0.1s forwards;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeup 0.6s 0.2s forwards;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  .hero-sub {
+    margin-top: 1.4rem;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeup 0.6s 0.35s forwards;
+  }
+
+  .hero-links {
+    margin-top: 2.4rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeup 0.6s 0.45s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 0.55rem 1.1rem;
+    border-radius: 3px;
+    border: 1px solid var(--border-hi);
+    color: var(--muted);
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .btn-primary {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .btn-primary:hover {
+    background: #3a5229;
+  }
+
+  /* ── Sections ──────────────────────────────────── */
+  section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 2.4rem;
+  }
+
+  /* ── About ─────────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .about-text p + p { margin-top: 1rem; }
+
+  .stat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .stat-value .hl { color: var(--accent); }
+
+  /* ── Skills ────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 0.3rem 0.65rem;
+    border: 1px solid var(--border-hi);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── Projects ──────────────────────────────────── */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .project-card {
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    transition: background 0.15s;
+  }
+
+  .project-card:last-child { border-bottom: none; }
+
+  .proj-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .proj-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .proj-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .badge-award {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid #3a5229;
+  }
+
+  .badge-live {
+    background: #1a2e2e;
+    color: #5ddcb8;
+    border: 1px solid #1f3d3a;
+  }
+
+  .badge-wip {
+    background: #2a2419;
+    color: #d4a843;
+    border: 1px solid #3a3020;
+  }
+
+  .proj-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 540px;
+  }
+
+  .proj-stack {
+    margin-top: 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .proj-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .icon-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+
+  .icon-link:hover { color: var(--accent); }
+
+  .icon-link svg {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── CP / Achievements ─────────────────────────── */
+  .cp-block {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding: 1.4rem 1.6rem;
+    border: 1px solid var(--border-hi);
+    border-radius: 4px;
+    background: var(--surface);
+    margin-bottom: 2rem;
+  }
+
+  .cp-rating {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .cp-details {
+    flex: 1;
+  }
+
+  .cp-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+
+  .cp-sub {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .awards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .award-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .award-row:last-child { border-bottom: none; }
+
+  .award-name {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .award-name span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .award-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── Contact ───────────────────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: border-color 0.15s, background 0.15s;
+    color: var(--muted);
+  }
+
+  .contact-item:hover {
+    border-color: var(--border-hi);
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .contact-item svg {
+    width: 15px; height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1px;
+    display: block;
+  }
+
+  .contact-val {
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  /* ── Footer ────────────────────────────────────── */
+  footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Animations ────────────────────────────────── */
+  @keyframes fadeup {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Mobile ────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 1.2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 1fr; }
+    .proj-links { flex-direction: row; align-items: flex-start; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────── -->
+<nav>
+  <div class="wrap">
+    <span class="nav-name">ibtida.ahmed</span>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#achievements">achievements</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="wrap">
+    <p class="eyebrow">CS @ BUET · Dhaka, Bangladesh</p>
+    <h1>Ibtida Bin<br><em>Ahmed.</em></h1>
+    <p class="hero-sub">
+      Computer science undergraduate, competitive programmer,
+      and builder of tools that matter — from AI-powered citizen
+      service platforms to disease detection for Bangladeshi farmers.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/ibtida01" target="_blank" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/ibtidaahmed" target="_blank" class="btn">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://codeforces.com/profile/ibtida01" target="_blank" class="btn">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Codeforces
+      </a>
+      <a href="Ibtida_Bin_Ahmed_CV.pdf" class="btn">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        CV / Résumé
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ─────────────────────────────────────────── -->
+<section id="about">
+  <div class="wrap">
+    <p class="section-label reveal">About</p>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>
+          I'm an undergraduate studying Computer Science at Bangladesh University
+          of Engineering and Technology (BUET), expected to graduate in early 2027.
+        </p>
+        <p>
+          I enjoy competitive programming and building full-stack systems that
+          solve real problems — especially those affecting people with limited
+          access to good infrastructure. I'm currently working on breast cancer
+          risk prediction as part of the PRIME+ research initiative.
+        </p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-item">
+          <span class="stat-label">University</span>
+          <span class="stat-value">BUET</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Degree</span>
+          <span class="stat-value">B.Sc. CSE</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Graduation</span>
+          <span class="stat-value">Early 2027</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">CF Rating</span>
+          <span class="stat-value"><span class="hl">1551</span> Specialist</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Status</span>
+          <span class="stat-value">Open to opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ─────────────────────────────────────────── -->
+<section id="skills">
+  <div class="wrap">
+    <p class="section-label reveal">Skills</p>
+    <div class="skills-grid reveal">
+      <div>
+        <p class="skill-group-title">Languages</p>
+        <div class="skill-tags">
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">C#</span>
+          <span class="tag">LaTeX</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">Frameworks</p>
+        <div class="skill-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">React</span>
+          <span class="tag">Express</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">FastAPI</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">Databases & Infra</p>
+        <div class="skill-tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">ML / Data</p>
+        <div class="skill-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ───────────────────────────────────────── -->
+<section id="projects">
+  <div class="wrap">
+    <p class="section-label reveal">Projects</p>
+    <div class="projects-list">
+
+      <!-- ONE -->
+      <div class="project-card reveal">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-title">ONE — Unified Citizen Service Platform</span>
+            <span class="proj-badge badge-award">2nd Runners-Up</span>
+          </div>
+          <p class="proj-desc">
+            AI-powered intake platform eliminating counter-ping-pong in Bangladeshi banks
+            and government offices. A citizen states their needs in Bengali, English, or Banglish —
+            the system issues one token, pre-fills all forms, and writes the officer's briefing.
+            84 services across 10 sectors. Sub-3-second AI response via Groq with three-tier fallback.
+          </p>
+          <div class="proj-stack">
+            <span class="tag">React 18</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Groq / Llama 3.3</span>
+            <span class="tag">GitHub Actions</span>
+          </div>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/ibtida01" target="_blank" class="icon-link">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            source
+          </a>
+        </div>
+      </div>
+
+      <!-- Shobarkhamar -->
+      <div class="project-card reveal">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-title">Shobarkhamar</span>
+            <span class="proj-badge badge-live">Live</span>
+          </div>
+          <p class="proj-desc">
+            "Everyone's Farm" — AI diagnostic platform for fish and poultry diseases, built
+            for Bangladeshi farmers. EfficientNet-B4 (8 fish classes) and EfficientNetV2
+            (5 poultry classes) serve predictions alongside peer-reviewed treatment recommendations,
+            farm management, and diagnosis history.
+          </p>
+          <div class="proj-stack">
+            <span class="tag">React</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">EfficientNet-B4</span>
+            <span class="tag">EfficientNetV2</span>
+            <span class="tag">Railway</span>
+          </div>
+        </div>
+        <div class="proj-links">
+          <a href="https://shobarkhamar.vercel.app" target="_blank" class="icon-link">
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            live
+          </a>
+          <a href="https://github.com/ibtida01" target="_blank" class="icon-link">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            source
+          </a>
+        </div>
+      </div>
+
+      <!-- PRIME+ -->
+      <div class="project-card reveal">
+        <div>
+          <div class="proj-meta">
+            <span class="proj-title">Breast Cancer Risk Prediction — PRIME+</span>
+            <span class="proj-badge badge-wip">In Progress</span>
+          </div>
+          <p class="proj-desc">
+            ML model for early breast cancer risk stratification, developed as part of
+            the PRIME+ research initiative. Focus on accessible prediction from
+            clinical and imaging data.
+          </p>
+          <div class="proj-stack">
+            <span class="tag">Python</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+          </div>
+        </div>
+        <div class="proj-links">
+          <span class="icon-link" style="opacity:0.4; cursor: default;">private</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Achievements ────────────────────────────────────── -->
+<section id="achievements">
+  <div class="wrap">
+    <p class="section-label reveal">Achievements</p>
+
+    <div class="cp-block reveal">
+      <div class="cp-rating">1551</div>
+      <div class="cp-details">
+        <p class="cp-title">Codeforces Specialist</p>
+        <p class="cp-sub">Handle: <a href="https://codeforces.com/profile/ibtida01" target="_blank" style="color:var(--accent)">ibtida01</a> · Max rating</p>
+      </div>
+    </div>
+
+    <div class="awards-list reveal">
+      <div class="award-row">
+        <div class="award-name">
+          FRICTION Hackathon — 2nd Runners-Up
+          <span>· Noverse Inc.</span>
+        </div>
+        <span class="award-year">2024</span>
+      </div>
+      <div class="award-row">
+        <div class="award-name">
+          BUET CSE Fest Hackathon — Rising Team
+        </div>
+        <span class="award-year">2024</span>
+      </div>
+      <div class="award-row">
+        <div class="award-name">
+          BUET CSE Fest CTF — Rising Team
+        </div>
+        <span class="award-year">2024</span>
+      </div>
+      <div class="award-row">
+        <div class="award-name">
+          CUET CSE Fest — Finalist
+          <span>· Solo</span>
+        </div>
+        <span class="award-year">2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ─────────────────────────────────────────── -->
+<section id="contact">
+  <div class="wrap">
+    <p class="section-label reveal">Contact</p>
+    <div class="contact-grid reveal">
+      <a href="mailto:ibtida01.ahmed@gmail.com" class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <span class="contact-label">Email</span>
+          <span class="contact-val">ibtida01.ahmed@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://github.com/ibtida01" target="_blank" class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <div>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-val">github.com/ibtida01</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/ibtidaahmed" target="_blank" class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <div>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-val">linkedin.com/in/ibtidaahmed</span>
+        </div>
+      </a>
+      <a href="https://codeforces.com/profile/ibtida01" target="_blank" class="contact-item">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div>
+          <span class="contact-label">Codeforces</span>
+          <span class="contact-val">ibtida01 · 1551</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    built by ibtida bin ahmed · 2025
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
